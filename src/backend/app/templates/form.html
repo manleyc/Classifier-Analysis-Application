@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% import 'bootstrap/wtf.html' as wtf%}
+{% block content %}
+
+    <!-- Bootstrap Javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+    <body>
+      <div class="container">
+        <form action="/result" method=POST enctype=multipart/form-data>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="selectpicker1"> Target Attribute</label>
+                {{ form.targetAtt(class_='form-control') }}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="selectpicker2"> Attributes to Use</label>
+                {{ form.selectedAtt(class_='form-control') }}
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class="form-group col-sm">
+              <div class="card">
+                <div class="card-header">
+                  Classifiers to Use
+                </div>
+                <div class="card-body">
+                  <p> {{ wtf.form_field(form.nbCheck) }} </p>
+                  <p> {{ wtf.form_field(form.dtCheck) }} </p>
+                  <p> {{ wtf.form_field(form.knnCheck) }} </p>
+                  <p> {{ wtf.form_field(form.svmCheck) }} </p>
+                  <p> {{ wtf.form_field(form.split) }} </p>
+                </div>
+              </div>
+            </div>
+            <div class='form-group col-sm'>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">K-Nearest Neighbours Metrics</h5>
+                  <hr>
+                  <p> {{ wtf.form_field(form.knnMetric) }} </p>
+                  <p> {{ wtf.form_field(form.kValue) }} </p>
+                </div>
+              </div>
+            </div>
+            <div class='form-group col-sm'>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Decision Tree Metrics</h5>
+                  <hr>
+                  <p> {{ wtf.form_field(form.dtMetric) }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary" style="width: 150px">Run</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </body>
+{% endblock %}

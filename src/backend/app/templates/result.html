@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    
+    <div class='container'>
+      <embed type="image/svg+xml" src={{graph_data|safe}} style='max-width:5000px; max-height:350px'>
+    </div>
+    
+    <hrgoup class="mb20">
+      <h1>Results</h1>
+    </hrgoup>
+
+    <br>
+    {% for result in results %}
+    <div class="container">
+      <div class="card">
+        <h5 class="card-header">{{ result.Classifier_Used }}</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <h6 class="card-text">Accuracy Result:</h6>
+            </div>
+            <div class="col-sm-6">
+              <p class="card-text">{{ result.Result }} &#37;</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h6 class="card-text">Split Ratio:</h6>
+            </div>
+            <div class="col-sm-6">
+              <p class="card-text">{{ form.split.data }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h6 class="card-text">Target Attribute:</h6>
+            </div>
+            <div class="col-sm-6">
+              <p class="card-text">{{ form.targetAtt.data }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <h6 class="card-text">Attributes Used:</h6>
+            </div>
+            <div class="col-sm-6">
+              <p class="card-text">{{ form.selectedAtt.data }}</p>
+            </div>
+          </div>
+          {% if form.knnCheck.data == True and result.Classifier_Used == 'K-Nearest Neighbours' %}
+            <div class="row">
+              <div class="col-sm-4">
+               <h6 class="card-text">Metrics Used:</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text">{{ form.knnMetric.data }}</p>
+              </div>
+              <div class="col-sm-4">
+               <h6 class="card-text">K Value:</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text">{{ form.kValue.data }}</p>
+            </div>
+          {% endif %}
+          {% if form.dtCheck.data == True and result.Classifier_Used == 'Decision Tree' %}
+            <div class="row">
+              <div class="col-sm-4">
+               <h6 class="card-text">Metrics Used:</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text">{{ form.dtMetric.data }}</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+{% endblock content %}
+
+

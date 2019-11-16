@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% import 'bootstrap/wtf.html' as wtf%}
+{% block content %}
+<div class="container">
+  <title>Results</title>
+
+  <div class="container theme-showcase" role='main'>
+    <h1>File: {{ File }}</h1>
+    <h1>Headers: {{ Headers }}</h1>
+    <h1>Split Number: {{ Split }}</h1>
+    <h1>Choosen: {{ chosenAtt }}</h1>
+    <h1>Target: {{ targetAtt }}</h1>
+  </div>
+
+</div>
+{% endblock content %}
+
+
